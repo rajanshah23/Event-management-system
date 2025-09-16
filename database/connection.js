@@ -7,6 +7,6 @@ const connectDB=async ()=>{
          console.log("Database Connected to MongoDB successfully")
     } catch (error) {
         console.error("Error Connecting to database:",error)
-        process.getMaxListeners(1);    }
+        process.exit(1);    }
 }
 module.exports=connectDB
