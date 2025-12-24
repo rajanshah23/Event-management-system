@@ -1,7 +1,7 @@
-const Event = require("../models/Event");
+const Event = require("../models/eventModel");
 
 // CREATE EVENT
-exports.createEvent = async (req, res) => {
+const createEvent = async (req, res) => {
   try {
     const {
       title,
@@ -39,7 +39,7 @@ exports.createEvent = async (req, res) => {
 };
 
 // GET ALL EVENTS
-exports.getEvents = async (req, res) => {
+const getEvents = async (req, res) => {
   try {
     const events = await Event.find().populate("organizer", "name email");
     res.json(events);
@@ -49,7 +49,7 @@ exports.getEvents = async (req, res) => {
 };
 
 // GET EVENT BY ID
-exports.getEventById = async (req, res) => {
+const getEventById = async (req, res) => {
   try {
     const event = await Event.findById(req.params.id)
       .populate("registrations")
@@ -64,7 +64,7 @@ exports.getEventById = async (req, res) => {
 };
 
 // UPDATE EVENT
-exports.updateEvent = async (req, res) => {
+const updateEvent = async (req, res) => {
   try {
     const updated = await Event.findByIdAndUpdate(
       req.params.id,
@@ -81,7 +81,7 @@ exports.updateEvent = async (req, res) => {
 };
 
 // DELETE EVENT
-exports.deleteEvent = async (req, res) => {
+const deleteEvent = async (req, res) => {
   try {
     const result = await Event.findByIdAndDelete(req.params.id);
     if (!result) return res.status(404).json({ message: "Event not found" });
@@ -91,3 +91,4 @@ exports.deleteEvent = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+ module.exports = {createEvent, getEvents, getEventById, updateEvent, deleteEvent};

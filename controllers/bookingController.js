@@ -1,6 +1,6 @@
-const Booking = require("../models/Booking");
-const Event = require("../models/Event");
-const Payment = require("../models/Payment");
+const Booking = require("../models/bookingModel");
+const Event = require("../models/eventModel");
+const Payment = require("../models/paymentModel");
 const mongoose = require("mongoose");
 
 // CREATE BOOKING
